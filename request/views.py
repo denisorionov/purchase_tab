@@ -1,7 +1,9 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 
 
@@ -10,11 +12,19 @@ def home_view(request):
     return render(request, 'request/dashboard.html')
 
 
-class RegisterView(View):
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect('home_page')
-        return render(request, 'request/register.html')
+class SignupView(View):
+    def dispatch(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            password2 = request.POST.get('password2')
+
+            if password == password2:
+                User.objects.create_user(username, email, password)
+                return redirect(reverse('login'))
+
+        return render(request, 'request/signup.html')
 
 
 class LoginView(View):
