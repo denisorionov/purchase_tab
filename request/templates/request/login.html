@@ -25,23 +25,26 @@
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form method="post">
+      <form method="post" class="needs-validation" novalidate>
         {% csrf_token %}
         <div class="input-group mb-3">
-          <input type="username" class="form-control" placeholder="Username" name="username">
+          <input type="username" class="form-control" placeholder="Username" name="username" id="validationCustom01" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
+          <div class="invalid-feedback">Please enter your name</div>
         </div>
+
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password">
+          <input type="password" class="form-control" placeholder="Password" name="password" id="validationCustom02" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
+          <div class="invalid-feedback">Please enter your password</div>
         </div>
         <div class="row">
           <div class="col-8">
@@ -88,5 +91,26 @@
 <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict';
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation');
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms).forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
+  </script>
 </body>
 </html>
