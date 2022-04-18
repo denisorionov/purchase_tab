@@ -9,7 +9,7 @@ from django.views import View
 
 @login_required(login_url='login')
 def home_view(request):
-    return render(request, 'request/dashboard.html')
+    return render(request, 'request/home.html')
 
 
 class SignupView(View):

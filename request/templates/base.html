@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PurchaseTab</title>
-
+{% block title %} {% endblock %}
   <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
 <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
@@ -30,7 +30,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/" class="nav-link">Dashboard</a>
+        <a href="/" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/requests" class="nav-link">Requests</a>
@@ -96,7 +96,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Pages
@@ -105,13 +105,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard</p>
+                  <p>Home</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/requests/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Requests</p>
                 </a>
@@ -158,6 +158,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 
+<script>
+$(document).ready(function(){
+var url=document.location.href; $.each($(".nav-item a"),function(){
+  if(this.href==url){$(this).addClass('active');};
+  });
+});
+</script>
 
 {% block scripts %} {% endblock %}
 
