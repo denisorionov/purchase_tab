@@ -30,10 +30,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/" class="nav-link">Home</a>
+        <a href="/" class="nav-link">Дашборд</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/requests" class="nav-link">Requests</a>
+        <a href="/requests" class="nav-link">Заявки на приобретение</a>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/requests" class="nav-link">Договоры</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/requests" class="nav-link">Контрагенты</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/requests" class="nav-link">Производители (вендоры)</a>
+      </li>
       </li>
     </ul>
 
@@ -73,18 +82,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
-      <img src="{% static 'dist/img/user1-128x128.jpg' %}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-      <span class="brand-text font-weight-light">PurchaseTab</span>
+    <a href="/" class="brand-link p-3">
+      <i class="fab fa-wolf-pack-battalion fa-1x"></i>
+      <span class="brand-text font-weight-bold">PurchaseTab</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{% static 'dist/img/user1-128x128.jpg' %}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-        </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
         </div>
@@ -97,9 +103,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon far fa-bookmark"></i>
               <p>
-                Pages
+                Разделы
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -107,13 +113,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Home</p>
+                  <p>Дашборд</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/requests/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Requests</p>
+                  <p>Заявки на приобретение</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/contract/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Договоры</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/contractor/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Контрагенты</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/vendor/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Производители</p>
                 </a>
               </li>
             </ul>
