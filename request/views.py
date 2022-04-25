@@ -6,10 +6,13 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
+from request.models import Request
+
 
 @login_required(login_url='login')
 def home_view(request):
-    return render(request, 'request/home.html')
+    requests = Request.objects.all()
+    return render(request, 'request/home.html', context={'requests': requests})
 
 
 class SignupView(View):
@@ -46,6 +49,7 @@ class LoginView(View):
 
 class RequestsView(LoginRequiredMixin, View):
     login_url = 'login'
+
     def get(self, request, *args, **kwargs):
         return render(request, 'request/requests.html')
 

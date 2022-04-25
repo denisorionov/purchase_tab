@@ -100,22 +100,36 @@
                   <thead>
                   <tr>
                     <th>Номер заявки</th>
-                    <th>Предмет</th>
-                    <th>Сумма заявки</th>
+                    <th>Дата заявки</th>
+                    <th>Дата поступления в ДКЗ</th>
+                    <th>Предмет закупки</th>
                     <th>Форма закупки</th>
-                    <th>Подразделение инициатор</th>
+                    <th>Сумма закупки</th>
+                    <th>Валюта</th>
+                    <th>Сумма закупки в рублях</th>
+                    <th>Инициатор</th>
+                    <th>Работник инициатора</th>
+                    <th>Менеджер</th>
+                    <th>Статус</th>
                   </tr>
                   </thead>
                   <tbody>
+                  {% for request in requests %}
                   <tr>
-                    <td>9330</td>
-                    <td>Поставка серверов
-                    </td>
-                    <td>20 000 000,00</td>
-                    <td>Запрос котировок</td>
-                    <td>Отдел бюджетирования</td>
+                    <th>{{ request.number }}</th>
+                    <th>{{ request.date }}</th>
+                    <th>{{ request.date_in_dkz }}</th>
+                    <th>{{ request.subject }}</th>
+                    <th>{{ request.format }}</th>
+                    <th>{{ request.amount }}</th>
+                    <th>{{ request.currency }}</th>
+                    <th>{{ request.amount_rub }}</th>
+                    <th>{{ request.department_initiator }}</th>
+                    <th>{{ request.employee_initiator }}</th>
+                    <th>{{ request.employee_dkz }}</th>
+                    <th>{{ request.status }}</th>
                   </tr>
-
+                  {% endfor %}
                   </tbody>
 
                 </table>
