@@ -3,6 +3,12 @@ from django.db import models
 
 class Request(models.Model):
 
+    CURRENCY_CHOICES = [
+        ('RUB', 'RUB'),
+        ('USD', 'USD'),
+        ('EUR', 'EUR')
+    ]
+
     STATUS_CHOICES = [
         ('review', 'рассмотрение заявки'),
         ('rework', 'на доработкуе у инициатора'),
@@ -22,7 +28,7 @@ class Request(models.Model):
     subject = models.TextField('предмет')
     format = models.CharField('форма закупки', max_length=20, db_index=True)
     amount = models.DecimalField('сумма закупки', max_digits=12, decimal_places=2)
-    currency = models.CharField('валюта', max_length=5, db_index=True, null=True)
+    currency = models.CharField('валюта', max_length=3, choices=CURRENCY_CHOICES, db_index=True)
     amount_rub = models.DecimalField('сумма закупки в рублях', max_digits=12, decimal_places=2, null=True)
     department_initiator = models.CharField('инициатор', max_length=50, db_index=True)
     employee_initiator = models.CharField('работник инициатора', max_length=50, db_index=True)

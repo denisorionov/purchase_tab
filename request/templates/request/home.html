@@ -127,7 +127,7 @@
                     <th>{{ request.department_initiator }}</th>
                     <th>{{ request.employee_initiator }}</th>
                     <th>{{ request.employee_dkz }}</th>
-                    <th>{{ request.status }}</th>
+                    <th>{{ request.get_status_display }}</th>
                   </tr>
                   {% endfor %}
                   </tbody>
