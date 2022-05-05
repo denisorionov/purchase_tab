@@ -2,6 +2,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.db.models import Count, Q
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
@@ -11,8 +12,21 @@ from request.models import Request
 
 @login_required(login_url='login')
 def home_view(request):
-    requests = Request.objects.all()
-    return render(request, 'request/home.html', context={'requests': requests})
+    managers = User.objects.filter(groups__name__in=['managers']).annotate(
+        qt=Count('requests', filter=Q(
+            requests__status__in=['review', 'rework', 'reparation_documentation', 'agreement_documentation',
+                                  'rework_documentation', 'approval', 'negotiation', 'signing_contract'])))
+    requests = list(Request.objects.all())
+
+    saving = {}
+
+    for r in requests:
+        try:
+            saving[r.id] = round((100 - (r.contract_price * 100 / r.amount)), 2)
+        except:
+            saving[r.id] = 0
+    print(saving)
+    return render(request, 'request/home.html', context={'requests': requests, 'managers': managers, 'saving': saving})
 
 
 class SignupView(View):
@@ -47,10 +61,19 @@ class LoginView(View):
             return render(request, 'request/login.html', context={'invalid': True})
 
 
-class RequestsView(LoginRequiredMixin, View):
+class MyRequestsView(LoginRequiredMixin, View):
     login_url = 'login'
 
     def get(self, request, *args, **kwargs):
-        return render(request, 'request/requests.html')
+        user = auth.get_user(request)
+        requests = Request.objects.filter(employee_dkz_id=user.id)
+        return render(request, 'request/my_requests.html', context={'requests': requests})
 
 
+class NewRequestsView(LoginRequiredMixin, View):
+    login_url = 'login'
+
+    def get(self, request, *args, **kwargs):
+        user = auth.get_user(request)
+        requests = Request.objects.filter(employee_dkz_id=user.id)
+        return render(request, 'request/new_requests.html', context={'requests': requests})

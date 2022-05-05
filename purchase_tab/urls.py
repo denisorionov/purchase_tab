@@ -11,7 +11,8 @@ urlpatterns = [
     path('', home_view, name='home_page'),
     path('login/', views.LoginView.as_view(), name='login'),
     path('signup/', views.SignupView.as_view(), name='signup'),
-    path('requests/', views.RequestsView.as_view(), name='requests'),
+    path('my_requests/', views.MyRequestsView.as_view(), name='my_requests'),
+    path('new_requests/', views.NewRequestsView.as_view(), name='new_requests'),
 ]
 
 urlpatterns += static(settings.STATIC_URL,

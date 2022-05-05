@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block title %}
 {% load static %}
   <!-- DataTables -->
@@ -8,109 +9,33 @@
 {% endblock %}
 
 {% block content %}
-<!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Дашборд</h1>
-          </div><!-- /.col -->
+            <h1>Мои заявки</h1>
+          </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/">Дашборд</a></li>
-              <li class="breadcrumb-item active">Дашборд</li>
+              <li class="breadcrumb-item active">Мои заявки</li>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    </section>
 
     <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
+    <section class="content">
 
-        </div>
-
-
-        <div class="row">
-          <div class="col-lg-4">
-             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Менеджеры</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>ФИО</th>
-                      <th>Заявок в работе</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {% for manager in managers %}
-                    <tr>
-                      <td>{{ manager.first_name }} {{ manager.last_name }}</td>
-                      <td>
-                        {{ manager.qt }}
-                      </td>
-                      <td>
-                        <a href="#"  class="btn btn-primary btn-sm">
-                          <i class="fas fa-folder"></i>
-                          View
-                         </a>
-                      </td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-2 col-3">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                <p>Экономия в текущем квартале</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-2 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
-                <p>Заключено договоров</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-shopping-cart"></i>
-              </div>
-            </div>
-          </div>
-          </div>
-          <!-- /.col-md-6 -->
-
-        <!-- /.row -->
-
-
-        <!-- Default box -->
-          <div class="card">
+      <!-- Default box -->
+<div class="card">
               <div class="card-header">
                 <h3 class="card-title">Заявки на приобретение</h3>
+                <a href="/new_requests" class="btn-sm btn-success float-right">Новая заявка</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -136,6 +61,7 @@
                     <th>Курс</th>
                     <th>Цена договора в рублях</th>
                     <th>Экономия</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -151,19 +77,16 @@
                     <th>{{ request.department_initiator }}</th>
                     <th>{{ request.employee_initiator }}</th>
                     <th>{{ request.get_status_display }}</th>
-                    <th>{{ request.employee_dkz.first_name }} {{ request.employee_dkz.last_name }}</th>
+                    <th>{{ request.employee_dkz }}</th>
                     <th>{{ request.comment|default_if_none:"&nbsp;" }}</th>
                     <th>{{ request.contract_number|default_if_none:"&nbsp;" }}</th>
                     <th>{{ request.contract_date|default_if_none:"&nbsp;" }}</th>
-                    <th>{{ request.contractor|default_if_none:"&nbsp;" }}</th>
+                    <th>{{ request.contractor|default_if_none:"&nbsp;"}}</th>
                     <th>{{ request.contract_price|default_if_none:"&nbsp;" }}</th>
                     <th>{{ request.rate|default_if_none:"&nbsp;" }}</th>
                     <th>{{ request.contract_price_rub|default_if_none:"&nbsp;" }}</th>
-                    {% for id, save in saving.items %}
-                    {% if id == request.id %}
-                    <th>{{ save }} %</th>
-                    {% endif %}
-                    {% endfor %}
+                    <th>{{ request.contract_price_rub|default_if_none:"&nbsp;" }}</th>
+                    <th><button type="button" class="btn-sm btn-block bg-gradient-danger">Редактировать</button></th>
                   </tr>
                   {% endfor %}
                   </tbody>
@@ -174,12 +97,11 @@
             </div>
             <!-- /.card -->
 
-      </div>
-      <!-- /.container-fluid -->
-    </div>
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
 {% endblock %}
 {% block scripts %}
 {% load static %}
@@ -217,4 +139,3 @@
 </script>
 
 {% endblock %}
-
