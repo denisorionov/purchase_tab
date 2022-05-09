@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'request',
+    'purchase_order',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "request/static/request")
+    os.path.join(BASE_DIR, "purchase_order/static/purchase_order")
 
 ]
 

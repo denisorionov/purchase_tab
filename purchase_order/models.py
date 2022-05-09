@@ -20,7 +20,7 @@ class Contractor(models.Model):
     comment = models.TextField('комментарий', blank=True, null=True)
 
 
-class Request(models.Model):
+class PurchaseOrder(models.Model):
     CURRENCY_CHOICES = [
         ('RUB', 'RUB'),
         ('USD', 'USD'),
@@ -57,7 +57,7 @@ class Request(models.Model):
     currency = models.CharField('валюта', max_length=3, choices=CURRENCY_CHOICES, db_index=True)
     department_initiator = models.CharField('инициатор', max_length=50, db_index=True)
     employee_initiator = models.CharField('работник инициатора', max_length=50, db_index=True)
-    employee_dkz = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='requests',
+    employee_dkz = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='purchase_orders',
                                      verbose_name='категорийный менеджер', null=True, blank=True)
     status = models.CharField('статус', max_length=24, default='review', choices=STATUS_CHOICES, db_index=True)
     comment = models.TextField('комментарий', blank=True, null=True)

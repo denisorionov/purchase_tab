@@ -35,7 +35,7 @@
 <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Заявки на приобретение</h3>
-                <a href="/new_requests" class="btn-sm btn-success float-right">Новая заявка</a>
+                <a href="/new_purchase_order" class="btn-sm btn-success float-right">Новая заявка</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -65,27 +65,27 @@
                   </tr>
                   </thead>
                   <tbody>
-                  {% for request in requests %}
+                  {% for purchase_order in purchase_orders %}
                   <tr>
-                    <th>{{ request.number }}</th>
-                    <th>{{ request.date }}</th>
-                    <th>{{ request.date_in_dkz }}</th>
-                    <th>{{ request.subject }}</th>
-                    <th>{{ request.get_format_display }}</th>
-                    <th>{{ request.amount }}</th>
-                    <th>{{ request.currency }}</th>
-                    <th>{{ request.department_initiator }}</th>
-                    <th>{{ request.employee_initiator }}</th>
-                    <th>{{ request.get_status_display }}</th>
-                    <th>{{ request.employee_dkz }}</th>
-                    <th>{{ request.comment|default_if_none:"&nbsp;" }}</th>
-                    <th>{{ request.contract_number|default_if_none:"&nbsp;" }}</th>
-                    <th>{{ request.contract_date|default_if_none:"&nbsp;" }}</th>
-                    <th>{{ request.contractor|default_if_none:"&nbsp;"}}</th>
-                    <th>{{ request.contract_price|default_if_none:"&nbsp;" }}</th>
-                    <th>{{ request.rate|default_if_none:"&nbsp;" }}</th>
-                    <th>{{ request.contract_price_rub|default_if_none:"&nbsp;" }}</th>
-                    <th>{{ request.contract_price_rub|default_if_none:"&nbsp;" }}</th>
+                    <th>{{ purchase_order.number }}</th>
+                    <th>{{ purchase_order.date }}</th>
+                    <th>{{ purchase_order.date_in_dkz }}</th>
+                    <th>{{ purchase_order.subject }}</th>
+                    <th>{{ purchase_order.get_format_display }}</th>
+                    <th>{{ purchase_order.amount }}</th>
+                    <th>{{ purchase_order.currency }}</th>
+                    <th>{{ purchase_order.department_initiator }}</th>
+                    <th>{{ purchase_order.employee_initiator }}</th>
+                    <th>{{ purchase_order.get_status_display }}</th>
+                    <th>{{ purchase_order.employee_dkz }}</th>
+                    <th>{{ purchase_order.comment|default_if_none:"&nbsp;" }}</th>
+                    <th>{{ purchase_order.contract_number|default_if_none:"&nbsp;" }}</th>
+                    <th>{{ purchase_order.contract_date|default_if_none:"&nbsp;" }}</th>
+                    <th>{{ purchase_order.contractor|default_if_none:"&nbsp;"}}</th>
+                    <th>{{ purchase_order.contract_price|default_if_none:"&nbsp;" }}</th>
+                    <th>{{ purchase_order.rate|default_if_none:"&nbsp;" }}</th>
+                    <th>{{ purchase_order.contract_price_rub|default_if_none:"&nbsp;" }}</th>
+                    <th>{{ purchase_order.contract_price_rub|default_if_none:"&nbsp;" }}</th>
                     <th><button type="button" class="btn-sm btn-block bg-gradient-danger">Редактировать</button></th>
                   </tr>
                   {% endfor %}

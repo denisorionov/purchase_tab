@@ -3,16 +3,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from request import views
-from request.views import home_view
+from purchase_order import views
+from purchase_order.views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home_page'),
     path('login/', views.LoginView.as_view(), name='login'),
     path('signup/', views.SignupView.as_view(), name='signup'),
-    path('my_requests/', views.MyRequestsView.as_view(), name='my_requests'),
-    path('new_requests/', views.NewRequestsView.as_view(), name='new_requests'),
+    path('my_purchase_orders/', views.MyPurchaseOrdersView.as_view(), name='my_purchase_orders'),
+    path('new_purchase_order/', views.NewPurchaseOrderView.as_view(), name='new_purchase_order'),
 ]
 
 urlpatterns += static(settings.STATIC_URL,

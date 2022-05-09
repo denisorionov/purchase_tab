@@ -26,6 +26,8 @@
 
     <!-- Main content -->
     <section class="content">
+      <form method="post" action="" class="content">
+        {% csrf_token %}
       <div class="row">
         <div class="col-md-6">
           <div class="card card-primary">
@@ -83,7 +85,7 @@
                   </select>
                 </div>
               </div>
-              <div class="row">
+              <div class="row mt-3">
                 <div class="col-md-6">
                   <label for="inputName">Инициатор</label>
                     <input type="text" id="inputName" class="form-control">
@@ -93,7 +95,7 @@
                     <input type="text" id="inputName" class="form-control">
                 </div>
               </div>
-              <div class="row">
+              <div class="row mt-3 mb-3">
                 <div class="col-md-6">
                   <label for="inputStatus">Статус</label>
                     <select id="inputStatus" class="form-control custom-select">
@@ -125,17 +127,35 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="form-group">
-                <label for="inputEstimatedBudget">Estimated budget</label>
-                <input type="number" id="inputEstimatedBudget" class="form-control">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label for="inputName">Номер договора</label>
+                    <input type="text" id="inputName" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="inputName">Дата договора</label>
+                    <input type="text" id="inputName" class="form-control">
+                  </div>
               </div>
-              <div class="form-group">
-                <label for="inputSpentBudget">Total amount spent</label>
-                <input type="number" id="inputSpentBudget" class="form-control">
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <label for="inputName">Контрагент</label>
+                  <input type="text" id="inputName" class="form-control">
+                </div>
               </div>
-              <div class="form-group">
-                <label for="inputEstimatedDuration">Estimated project duration</label>
-                <input type="number" id="inputEstimatedDuration" class="form-control">
+              <div class="row mt-3">
+                  <div class="col-md-4">
+                    <label for="inputName">Цена договора</label>
+                    <input type="text" id="inputName" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="inputName">Курс рубля</label>
+                    <input type="text" id="inputName" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="inputName">Цена договора в рублях</label>
+                    <input type="text" id="inputName" class="form-control">
+                  </div>
               </div>
             </div>
             <!-- /.card-body -->
@@ -143,12 +163,10 @@
           <!-- /.card -->
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <a href="#" class="btn btn-secondary">Отменить</a>
-          <input type="submit" value="Сохранить" class="btn btn-success float-right">
+        <div class="form-group">
+          <input type="submit" class="btn btn-success" value="Сохранить">
         </div>
-      </div>
+      </form>
     </section>
     <!-- /.content -->
   </div>

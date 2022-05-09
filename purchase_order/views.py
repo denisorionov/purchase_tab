@@ -7,26 +7,27 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
-from request.models import Request
+from purchase_order.models import PurchaseOrder
 
 
 @login_required(login_url='login')
 def home_view(request):
     managers = User.objects.filter(groups__name__in=['managers']).annotate(
-        qt=Count('requests', filter=Q(
-            requests__status__in=['review', 'rework', 'reparation_documentation', 'agreement_documentation',
-                                  'rework_documentation', 'approval', 'negotiation', 'signing_contract'])))
-    requests = list(Request.objects.all())
+        qt=Count('purchase_orders', filter=Q(
+            purchase_orders__status__in=['review', 'rework', 'reparation_documentation', 'agreement_documentation',
+                                         'rework_documentation', 'approval', 'negotiation', 'signing_contract'])))
+    purchase_orders = list(PurchaseOrder.objects.all())
 
     saving = {}
 
-    for r in requests:
+    for purchase_order in purchase_orders:
         try:
-            saving[r.id] = round((100 - (r.contract_price * 100 / r.amount)), 2)
+            saving[purchase_order.id] = round((100 - (purchase_order.contract_price * 100 / purchase_order.amount)), 2)
         except:
-            saving[r.id] = 0
-    print(saving)
-    return render(request, 'request/home.html', context={'requests': requests, 'managers': managers, 'saving': saving})
+            saving[purchase_order.id] = 0
+
+    return render(request, 'purchase_order/home.html',
+                  context={'purchase_orders': purchase_orders, 'managers': managers, 'saving': saving})
 
 
 class SignupView(View):
@@ -41,14 +42,14 @@ class SignupView(View):
                 User.objects.create_user(username, email, password)
                 return redirect(reverse('login'))
 
-        return render(request, 'request/signup.html')
+        return render(request, 'purchase_order/signup.html')
 
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('home_page')
-        return render(request, 'request/login.html')
+        return render(request, 'purchase_order/login.html')
 
     def post(self, request):
         username = request.POST.get('username')
@@ -58,22 +59,22 @@ class LoginView(View):
             auth.login(request, user)
             return redirect('home_page')
         else:
-            return render(request, 'request/login.html', context={'invalid': True})
+            return render(request, 'purchase_order/login.html', context={'invalid': True})
 
 
-class MyRequestsView(LoginRequiredMixin, View):
+class MyPurchaseOrdersView(LoginRequiredMixin, View):
     login_url = 'login'
 
     def get(self, request, *args, **kwargs):
         user = auth.get_user(request)
-        requests = Request.objects.filter(employee_dkz_id=user.id)
-        return render(request, 'request/my_requests.html', context={'requests': requests})
+        purchase_orders = PurchaseOrder.objects.filter(employee_dkz_id=user.id)
+        return render(request, 'purchase_order/my_purchase_orders.html', context={'purchase_orders': purchase_orders})
 
 
-class NewRequestsView(LoginRequiredMixin, View):
+class NewPurchaseOrderView(LoginRequiredMixin, View):
     login_url = 'login'
 
     def get(self, request, *args, **kwargs):
         user = auth.get_user(request)
-        requests = Request.objects.filter(employee_dkz_id=user.id)
-        return render(request, 'request/new_requests.html', context={'requests': requests})
+        purchase_orders = PurchaseOrder.objects.filter(employee_dkz_id=user.id)
+        return render(request, 'purchase_order/new_purchase_order.html', context={'purchase_orders': purchase_orders})
