@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
+from purchase_order.forms import PurchaseOrderForm
 from purchase_order.models import PurchaseOrder
 
 
@@ -76,5 +77,7 @@ class NewPurchaseOrderView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         user = auth.get_user(request)
-        purchase_orders = PurchaseOrder.objects.filter(employee_dkz_id=user.id)
-        return render(request, 'purchase_order/new_purchase_order.html', context={'purchase_orders': purchase_orders})
+        #purchase_orders = PurchaseOrder.objects.filter(employee_dkz_id=user.id)
+        purchase_order_form = PurchaseOrderForm()
+
+        return render(request, 'purchase_order/new_purchase_order.html', context={'form': purchase_order_form})

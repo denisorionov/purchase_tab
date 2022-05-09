@@ -45,70 +45,55 @@
                 <div class="row">
                   <div class="col-md-4">
                     <label for="inputName">Номер заявки</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.number }}
                   </div>
                   <div class="col-md-4">
                     <label for="inputName">Дата заявки</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.date }}
                   </div>
                   <div class="col-md-4">
                     <label for="inputName">Дата поступления в ДКЗ</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.date_in_dkz }}
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputDescription">Предмет</label>
-                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+                {{ form.subject }}
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label for="inputStatus">Форма закупки</label>
-                  <select id="inputStatus" class="form-control custom-select">
-                    <option selected disabled>Select one</option>
-                    <option>On Hold</option>
-                    <option>Canceled</option>
-                    <option>Success</option>
-                  </select>
+                  {{ form.format }}
                 </div>
                 <div class="col-md-4">
                   <label for="inputName">Сумма закупки</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.amount }}
                 </div>
                 <div class="col-md-4">
                   <label for="inputStatus">Валюта</label>
-                  <select id="inputStatus" class="form-control custom-select">
-                    <option selected disabled>Select one</option>
-                    <option>RUB</option>
-                    <option>USD</option>
-                    <option>EUR</option>
-                  </select>
+                  {{ form.currency }}
                 </div>
               </div>
               <div class="row mt-3">
                 <div class="col-md-6">
                   <label for="inputName">Инициатор</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.department_initiator }}
                 </div>
                 <div class="col-md-6">
                   <label for="inputName">Работник инициатора</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.employee_initiator }}
                 </div>
               </div>
               <div class="row mt-3 mb-3">
                 <div class="col-md-6">
                   <label for="inputStatus">Статус</label>
-                    <select id="inputStatus" class="form-control custom-select">
-                      <option selected disabled>Select one</option>
-                      <option>RUB</option>
-                      <option>USD</option>
-                      <option>EUR</option>
-                    </select>
+                    {{ form.status }}
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputDescription">Комментарий</label>
-                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+                {{ form.comment }}
               </div>
             </div>
             <!-- /.card-body -->
@@ -130,31 +115,31 @@
               <div class="row">
                   <div class="col-md-4">
                     <label for="inputName">Номер договора</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.contract_number }}
                   </div>
                   <div class="col-md-4">
                     <label for="inputName">Дата договора</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.contract_date }}
                   </div>
               </div>
               <div class="row mt-3">
                 <div class="col-md-6">
                   <label for="inputName">Контрагент</label>
-                  <input type="text" id="inputName" class="form-control">
+                  {{ form.contractor }}
                 </div>
               </div>
               <div class="row mt-3">
                   <div class="col-md-4">
                     <label for="inputName">Цена договора</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.contract_price }}
                   </div>
                   <div class="col-md-4">
                     <label for="inputName">Курс рубля</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.rate }}
                   </div>
                   <div class="col-md-4">
                     <label for="inputName">Цена договора в рублях</label>
-                    <input type="text" id="inputName" class="form-control">
+                    {{ form.contract_price_rub }}
                   </div>
               </div>
             </div>

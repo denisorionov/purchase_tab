@@ -54,7 +54,7 @@ class PurchaseOrder(models.Model):
     subject = models.TextField('предмет')
     format = models.CharField('форма закупки', max_length=12, choices=FORMAT_CHOICES, db_index=True)
     amount = models.DecimalField('сумма закупки', max_digits=12, decimal_places=2)
-    currency = models.CharField('валюта', max_length=3, choices=CURRENCY_CHOICES, db_index=True)
+    currency = models.CharField('валюта', max_length=3, default='RUB', choices=CURRENCY_CHOICES, db_index=True)
     department_initiator = models.CharField('инициатор', max_length=50, db_index=True)
     employee_initiator = models.CharField('работник инициатора', max_length=50, db_index=True)
     employee_dkz = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='purchase_orders',
