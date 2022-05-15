@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.db.models import Count, Q
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
@@ -76,8 +77,43 @@ class NewPurchaseOrderView(LoginRequiredMixin, View):
     login_url = 'login'
 
     def get(self, request, *args, **kwargs):
-        user = auth.get_user(request)
-        #purchase_orders = PurchaseOrder.objects.filter(employee_dkz_id=user.id)
         purchase_order_form = PurchaseOrderForm()
 
-        return render(request, 'purchase_order/new_purchase_order.html', context={'form': purchase_order_form})
+        return render(request, 'purchase_order/purchase_order.html', context={'form': purchase_order_form})
+
+    def post(self, request):
+        purchase_order_form = PurchaseOrderForm(request.POST)
+
+        if purchase_order_form.is_valid():
+            purchase_order_form.save(commit=False)
+            purchase_order_form.instance.employee_dkz = request.user
+            purchase_order_form.save()
+
+            return redirect('my_purchase_orders')
+
+        return render(request, 'purchase_order/purchase_order.html', context={'form': purchase_order_form})
+
+
+class EditPurchaseOrderView(LoginRequiredMixin, View):
+    login_url = 'login'
+
+    def get(self, request, id):
+        manager = auth.get_user(request)
+
+        if PurchaseOrder.objects.filter(employee_dkz__id=manager.id).filter(id=id):
+            purchase_order_form = PurchaseOrderForm(instance=PurchaseOrder.objects.filter(id=id).first())
+            return render(request, 'purchase_order/purchase_order.html', context={'form': purchase_order_form})
+
+        raise Http404
+
+    def post(self, request, id):
+        purchase_order_form = PurchaseOrderForm(request.POST, instance=PurchaseOrder.objects.filter(id=id).first())
+
+        if purchase_order_form.is_valid():
+            purchase_order_form.save(commit=False)
+            purchase_order_form.instance.employee_dkz = request.user
+            purchase_order_form.save()
+
+            return redirect('my_purchase_orders')
+
+        return render(request, 'purchase_order/purchase_order.html', context={'form': purchase_order_form})

@@ -13,6 +13,7 @@ urlpatterns = [
     path('signup/', views.SignupView.as_view(), name='signup'),
     path('my_purchase_orders/', views.MyPurchaseOrdersView.as_view(), name='my_purchase_orders'),
     path('new_purchase_order/', views.NewPurchaseOrderView.as_view(), name='new_purchase_order'),
+    path('order/<int:id>/', views.EditPurchaseOrderView.as_view(), name='edit_order'),
 ]
 
 urlpatterns += static(settings.STATIC_URL,

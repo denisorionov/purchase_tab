@@ -86,7 +86,7 @@
                     <th>{{ purchase_order.rate|default_if_none:"&nbsp;" }}</th>
                     <th>{{ purchase_order.contract_price_rub|default_if_none:"&nbsp;" }}</th>
                     <th>{{ purchase_order.contract_price_rub|default_if_none:"&nbsp;" }}</th>
-                    <th><button type="button" class="btn-sm btn-block bg-gradient-danger">Редактировать</button></th>
+                    <th><a href="/order/{{ purchase_order.id }}"  class="btn-sm btn-danger float-left">Редактировать</a></th>
                   </tr>
                   {% endfor %}
                   </tbody>

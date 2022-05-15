@@ -31,7 +31,6 @@ FORMAT_CHOICES = [
 
 
 class PurchaseOrderForm(forms.ModelForm):
-
     class Meta:
         model = PurchaseOrder
         fields = ['number', 'date', 'date_in_dkz', 'subject', 'format', 'amount', 'currency', 'department_initiator',
@@ -40,8 +39,12 @@ class PurchaseOrderForm(forms.ModelForm):
 
         widgets = {
             'number': forms.TextInput(attrs={'class': 'form-control'}),
-            'date': forms.TextInput(attrs={'class': 'form-control'}),
-            'date_in_dkz': forms.TextInput(attrs={'class': 'form-control'}),
+            'date': forms.DateInput(
+                attrs={'class': 'input-group date', 'data-date-format': 'mm/dd/yyyy', 'id': 'datetimepicker2',
+                       'size': '10'}),
+            'date_in_dkz': forms.DateInput(
+                attrs={'class': 'form-control pull-right', 'data-date-format': 'mm/dd/yyyy', 'id': 'date_dkz',
+                       'size': '10'}),
             'subject': forms.Textarea(attrs={'class': 'form-control', 'rows': '4'}),
             'format': forms.Select(attrs={'class': 'form-control custom-select'}, choices=FORMAT_CHOICES),
             'amount': forms.TextInput(attrs={'class': 'form-control'}),
@@ -58,4 +61,3 @@ class PurchaseOrderForm(forms.ModelForm):
             'contract_price_rub': forms.TextInput(attrs={'class': 'form-control'}),
 
         }
-

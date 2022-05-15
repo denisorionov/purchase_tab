@@ -63,8 +63,7 @@ class PurchaseOrder(models.Model):
     comment = models.TextField('комментарий', blank=True, null=True)
     contract_number = models.CharField('номер договора', max_length=20, blank=True, null=True, db_index=True)
     contract_date = models.DateField('дата', blank=True, null=True, db_index=True)
-    contractor = models.ForeignKey(Contractor, null=True, blank=True, on_delete=models.SET_NULL,
-                                   related_name='contracts', verbose_name='контрагент')
+    contractor = models.CharField('контрагент', max_length=50, blank=True, null=True, db_index=True)
     contract_price = models.DecimalField('цена договора', max_digits=12, decimal_places=2, blank=True, null=True)
     rate = models.DecimalField('курс рубля', max_digits=6, decimal_places=2, blank=True, null=True)
     contract_price_rub = models.DecimalField('цена договора в рублях', max_digits=12, decimal_places=2, blank=True,
