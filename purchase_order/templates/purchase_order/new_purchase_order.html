@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
-
+{% block title %}
+  <!-- datepicker -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+{% endblock %}
 {% load static %}
 
 {% block content %}
+
 
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -19,6 +26,11 @@
               <li class="breadcrumb-item"><a href="/">Дашборд</a></li>
               <li class="breadcrumb-item active">Новая заявка</li>
             </ol>
+          </div>
+          <div class="col-sm-6">
+            {% if args.inf_edit %}
+              <p class="alert alert-info" role="alert">Заявка сохранена</p>
+            {% endif %}
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -156,5 +168,18 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+{% endblock %}
+{% block scripts %}
+<script>
+  $(function() {
+    $( "#date" ).datepicker({
+        numberOfMonths: 1,
+        showButtonPanel: true,
+        onSelect: function(dateText, inst) {
+            $(this).parents("form").submit();
+        },
 
+    });
+  });
+</script>
 {% endblock %}
